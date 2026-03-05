@@ -1,0 +1,200 @@
+{
+  "datasets": [
+    {
+      "name": "3f46a8a9",
+      "displayName": "top_5_drugs_death",
+      "queryLines": [
+        "SELECT * FROM workspace.gold.top_5_drugs_death"
+      ]
+    },
+    {
+      "name": "cea002cd",
+      "displayName": "top_5_reactions",
+      "queryLines": [
+        "SELECT * FROM workspace.gold.top_5_reactions"
+      ]
+    },
+    {
+      "name": "eeade3ed",
+      "displayName": "reports_by_age_group",
+      "queryLines": [
+        "SELECT * FROM workspace.gold.reports_by_age_group"
+      ]
+    },
+    {
+      "name": "f0a0350b",
+      "displayName": "cases_by_gender",
+      "queryLines": [
+        "SELECT * FROM workspace.gold.cases_by_gender"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "537fa150",
+      "displayName": "Untitled page",
+      "layout": [
+        {
+          "widget": {
+            "name": "828bd96a",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "3f46a8a9",
+                  "fields": [
+                    {
+                      "name": "Drug_Name_Clean",
+                      "expression": "`Drug_Name_Clean`"
+                    },
+                    {
+                      "name": "sum(death_cases)",
+                      "expression": "SUM(`death_cases`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "Drug_Name_Clean",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(death_cases)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 7,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "25edbad1",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "cea002cd",
+                  "fields": [
+                    {
+                      "name": "Preferred_Term_For_Event",
+                      "expression": "`Preferred_Term_For_Event`"
+                    },
+                    {
+                      "name": "reaction_count",
+                      "expression": "`reaction_count`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "Preferred_Term_For_Event"
+                  },
+                  {
+                    "fieldName": "reaction_count"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "ab5777ec",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "f0a0350b",
+                  "fields": [
+                    {
+                      "name": "total_cases",
+                      "expression": "`total_cases`"
+                    },
+                    {
+                      "name": "Gender_of_Patient",
+                      "expression": "`Gender_of_Patient`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Cases by Gender",
+                "showTitle": true
+              },
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "total_cases",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Total Cases"
+                },
+                "color": {
+                  "fieldName": "Gender_of_Patient",
+                  "legend": {
+                    "position": "right"
+                  },
+                  "displayName": "Gender of Patient",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 6,
+            "width": 6,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
