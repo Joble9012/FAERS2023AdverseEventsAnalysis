@@ -32,11 +32,11 @@
   "pages": [
     {
       "name": "537fa150",
-      "displayName": "Untitled page",
+      "displayName": "Dashboard1",
       "layout": [
         {
           "widget": {
-            "name": "828bd96a",
+            "name": "top-drugs-most-death-reports",
             "queries": [
               {
                 "name": "main_query",
@@ -58,16 +58,22 @@
             ],
             "spec": {
               "version": 3,
+              "frame": {
+                "showTitle": true,
+                "title": "Top 5 Drugs with Most Deaths"
+              },
               "widgetType": "bar",
               "encodings": {
                 "x": {
                   "fieldName": "Drug_Name_Clean",
+                  "displayName": "Drug Name",
                   "scale": {
                     "type": "categorical"
                   }
                 },
                 "y": {
                   "fieldName": "sum(death_cases)",
+                  "displayName": "Death Count",
                   "scale": {
                     "type": "quantitative"
                   }
@@ -76,15 +82,15 @@
             }
           },
           "position": {
-            "x": 0,
-            "y": 0,
-            "width": 7,
+            "x": 4,
+            "y": 6,
+            "width": 8,
             "height": 6
           }
         },
         {
           "widget": {
-            "name": "25edbad1",
+            "name": "top-reaction-type-drug-use",
             "queries": [
               {
                 "name": "main_query",
@@ -100,29 +106,38 @@
                       "expression": "`reaction_count`"
                     }
                   ],
+                  "filters": [
+                    {
+                      "expression": "`Preferred_Term_For_Event` ILIKE `Preferred_Term_For_Event` OR TRUE"
+                    }
+                  ],
                   "disaggregated": true
                 }
               }
             ],
             "spec": {
               "version": 2,
-              "widgetType": "table",
+              "frame": {
+                "showDescription": false,
+                "showTitle": true,
+                "title": "Top Drug Reaction Type Reported",
+                "headerAlignment": "center"
+              },
+              "widgetType": "counter",
               "encodings": {
-                "columns": [
-                  {
-                    "fieldName": "Preferred_Term_For_Event"
-                  },
-                  {
-                    "fieldName": "reaction_count"
-                  }
-                ]
+                "value": {
+                  "fieldName": "reaction_count"
+                },
+                "target": {
+                  "fieldName": "Preferred_Term_For_Event"
+                }
               }
             }
           },
           "position": {
             "x": 0,
-            "y": 6,
-            "width": 6,
+            "y": 0,
+            "width": 4,
             "height": 6
           }
         },
@@ -180,9 +195,59 @@
             }
           },
           "position": {
-            "x": 6,
+            "x": 4,
+            "y": 0,
+            "width": 8,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "f90b0459",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "eeade3ed",
+                  "fields": [
+                    {
+                      "name": "total_reports",
+                      "expression": "`total_reports`"
+                    },
+                    {
+                      "name": "Age_Group_Readable",
+                      "expression": "`Age_Group_Readable`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "title": "",
+                "showTitle": false
+              },
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "total_reports",
+                    "displayName": "Total Reports"
+                  },
+                  {
+                    "fieldName": "Age_Group_Readable",
+                    "displayName": "Age Group"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 0,
             "y": 6,
-            "width": 6,
+            "width": 4,
             "height": 6
           }
         }
